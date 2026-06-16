@@ -6,3 +6,5 @@ pub mod collision_plugin;
 pub mod physics_plugin;
 pub mod global_input_plugin;
 pub mod screen_wrap_plugin;
+pub mod game_schedule_plugin;
+pub mod camera_plugin;

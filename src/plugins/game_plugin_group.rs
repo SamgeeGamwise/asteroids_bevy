@@ -1,4 +1,6 @@
 use bevy::app::{PluginGroup, PluginGroupBuilder};
+use crate::plugins::camera_plugin::CameraPlugin;
+use crate::plugins::game_schedule_plugin::GameSchedulePlugin;
 use super::global_input_plugin::GlobalInputPlugin;
 use super::physics_plugin::PhysicsPlugin;
 use super::screen_wrap_plugin::ScreenWrapPlugin;
@@ -12,8 +14,10 @@ pub struct GamePluginGroup;
 impl PluginGroup for GamePluginGroup {
     fn build(self) -> PluginGroupBuilder {
         PluginGroupBuilder::start::<Self>()
+            .add(GameSchedulePlugin)
             .add(AssetPlugin)
             .add(PlayerPlugin)
+            .add(CameraPlugin)
             .add(AsteroidPlugin)
             .add(CollisionPlugin)
             .add(PhysicsPlugin)

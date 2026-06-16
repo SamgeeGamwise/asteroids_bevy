@@ -1,5 +1,6 @@
 use bevy::app::{App, Update};
-use bevy::prelude::{On, Plugin};
+use bevy::prelude::{IntoScheduleConfigs, On, Plugin};
+use crate::plugins::game_schedule_plugin::GameSet;
 use crate::systems::{detect_collisions, AsteroidAsteroidCollision, PlayerAsteroidCollision};
 
 pub struct CollisionPlugin;
@@ -7,7 +8,7 @@ pub struct CollisionPlugin;
 impl Plugin for CollisionPlugin {
     fn build(&self, app: &mut App) {
         app
-            .add_systems(Update, detect_collisions)
+            .add_systems(Update, detect_collisions.in_set(GameSet::Collision))
             .add_observer(on_asteroid_asteroid_collision)
             .add_observer(on_player_asteroid_collision);
     }
