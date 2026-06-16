@@ -1,3 +1,8 @@
-mod game_plugin_group;
+pub mod game_plugin_group;
 mod player_plugin;
 mod asset_plugin;
+pub mod asteroid_plugin;
+pub mod collision_plugin;
+pub mod physics_plugin;
+pub mod global_input_plugin;
+pub mod screen_wrap_plugin;
