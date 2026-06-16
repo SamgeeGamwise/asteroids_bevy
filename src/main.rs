@@ -3,6 +3,7 @@ pub mod entities;
 pub mod systems;
 pub mod components;
 pub mod resources;
+pub mod plugins;
 
 use crate::startup::{create_camera, create_player, load_textures };
 use crate::systems::{ handle_player_movement, handle_player_fire_bullet, handle_global_input, handle_physics, screen_wrap, despawn_bullets, detect_collisions, AsteroidAsteroidCollision, PlayerAsteroidCollision };
