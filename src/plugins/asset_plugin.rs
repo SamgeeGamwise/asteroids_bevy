@@ -1,5 +1,5 @@
 use bevy::app::{App, Plugin, Startup};
-use crate::startup::{create_camera, create_player, load_textures};
+use crate::startup::load_textures;
 
 pub struct AssetPlugin;
 

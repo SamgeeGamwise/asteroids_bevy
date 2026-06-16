@@ -1,5 +1,5 @@
 use bevy::prelude::{Query, Res, Time, Transform};
-use crate::components::{ Movement, Physics};
+use crate::components::Physics;
 
 pub fn handle_physics(
     mut query: Query<(&mut Physics, &mut Transform)>,

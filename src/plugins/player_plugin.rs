@@ -1,6 +1,5 @@
 use bevy::app::{App, Plugin, Startup, Update};
-use crate::startup::{create_camera, create_player, load_textures};
-use crate::systems::asteroid_spawner::spawn_asteroid;
+use crate::startup::{create_camera, create_player};
 use crate::systems::{despawn_bullets, handle_player_fire_bullet, handle_player_movement};
 
 pub struct PlayerPlugin;

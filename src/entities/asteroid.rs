@@ -1,11 +1,9 @@
 use bevy::asset::Handle;
 use bevy::image::Image;
 use bevy::math::{Quat, Vec2, Vec3};
-use bevy::prelude::{Commands, Sprite, Timer, TimerMode, Transform};
-use bevy::transform;
-use crate::components::{Bullet, LifeTime, Movement, Physics};
-use crate::resources::GameTextures;
-use rand::{Rng, RngExt};
+use bevy::prelude::{Commands, Sprite, Transform};
+use crate::components::Physics;
+use rand::RngExt;
 use crate::{VIRTUAL_HEIGHT, VIRTUAL_WIDTH, WRAP_BUFFER};
 use crate::components::asteroid::{Asteroid, AsteroidSize};
 
