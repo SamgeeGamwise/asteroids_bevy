@@ -2,7 +2,9 @@ use bevy::app::AppExit;
 use bevy::input::ButtonInput;
 use bevy::math::Vec2;
 use bevy::prelude::{Commands, KeyCode, MessageWriter, Query, Res, Time, Transform, With};
-use crate::{GameTextures, Input, Movement, Physics, Player};
+use crate::components::{ Input, Movement, Physics};
+use crate::resources::GameTextures;
+use crate::components::Player;
 use crate::entities::bullet::create_bullet;
 
 pub fn handle_global_input(
@@ -48,7 +50,7 @@ pub fn handle_player_fire_bullet(
         if keyboard.just_pressed(input.fire) {
             create_bullet(
                 &mut commands,
-                &textures,
+                textures.bullet.clone(),
                 transform
             );
         }

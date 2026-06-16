@@ -1,8 +1,8 @@
 use bevy::math::{Quat, Vec2};
-use bevy::prelude::{Commands, Sprite, Timer, TimerMode, Transform};
-use crate::{Bullet, GameTextures, LifeTime, Movement, Physics};
+use bevy::prelude::{Commands, Handle, Image, Sprite, Timer, TimerMode, Transform};
+use crate::components::{Bullet, LifeTime, Physics};
 
-pub fn create_bullet(commands: &mut Commands, textures: &GameTextures, player_transform: &Transform) {
+pub fn create_bullet(commands: &mut Commands, bullet_texture: Handle<Image>, player_transform: &Transform) {
     let bullet_speed = 800.0;
     let direction = player_transform.up().truncate().normalize_or_zero();
     let spawn_offset = 60.0;
@@ -19,15 +19,12 @@ pub fn create_bullet(commands: &mut Commands, textures: &GameTextures, player_tr
     commands.spawn((
         Bullet,
         bullet_transform,
-        Sprite::from_image(textures.bullet.clone()),
+        Sprite::from_image(bullet_texture),
         Physics {
             velocity: direction * bullet_speed,
+            angular_velocity: 0.0,
             acceleration: Vec2::ZERO,
             drag: 0.0,
-        },
-        Movement {
-            speed: 0.0,
-            turn_speed: 0.0,
             max_speed: bullet_speed,
         },
         LifeTime {

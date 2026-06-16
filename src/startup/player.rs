@@ -1,6 +1,8 @@
 use bevy::math::Vec2;
 use bevy::prelude::{Commands, KeyCode, Res, Sprite, Transform};
-use crate::{GameTextures, Input, Movement, Physics, Player};
+use crate::components::{Input, Movement, Physics};
+use crate::resources::GameTextures;
+use crate::components::Player;
 
 pub fn create_player(mut commands: Commands, textures: Res<GameTextures>) {
     commands.spawn((
@@ -9,13 +11,14 @@ pub fn create_player(mut commands: Commands, textures: Res<GameTextures>) {
         Sprite::from_image(textures.player_ship.clone()),
         Physics {
             velocity: Vec2::ZERO,
+            angular_velocity: 0.0,
             acceleration: Vec2::ZERO,
             drag: 1.0,
+            max_speed: 500.0,
         },
         Movement {
             speed: 1200.0,
             turn_speed: 2.0,
-            max_speed: 500.0,
         },
         Input {
             move_forward: KeyCode::KeyW,
@@ -23,6 +26,6 @@ pub fn create_player(mut commands: Commands, textures: Res<GameTextures>) {
             move_left: KeyCode::KeyA,
             move_right: KeyCode::KeyD,
             fire: KeyCode::Space,
-        })
-    );
+        }
+    ));
 }

@@ -1,10 +1,14 @@
 pub mod startup;
 pub mod entities;
 pub mod systems;
+pub mod components;
+pub mod resources;
 
-use crate::startup::{ create_camera, create_player, load_textures };
-use crate::systems::{ handle_player_movement, handle_player_fire_bullet, handle_global_input, handle_physics, screen_wrap, despawn_bullets };
+use crate::startup::{create_camera, create_player, load_textures };
+use crate::systems::{ handle_player_movement, handle_player_fire_bullet, handle_global_input, handle_physics, screen_wrap, despawn_bullets, detect_collisions, AsteroidAsteroidCollision, PlayerAsteroidCollision };
 use bevy::prelude::*;
+use crate::resources::asteroid_spawn_timer::AsteroidSpawnTimer;
+use crate::systems::asteroid_spawner::spawn_asteroid;
 
 const VIRTUAL_WIDTH: f32 = 1920.0;
 const VIRTUAL_HEIGHT: f32 = 1080.0;
@@ -23,54 +27,28 @@ struct GamePlugin;
 impl Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
         app
+            .insert_resource(AsteroidSpawnTimer {
+                timer: Timer::from_seconds(2.0, TimerMode::Repeating)
+            })
             .add_systems(Startup, (load_textures, create_player, create_camera).chain())
+            .add_systems(Update, spawn_asteroid)
             .add_systems(Update, handle_player_movement)
             .add_systems(Update, handle_player_fire_bullet)
             .add_systems(Update, handle_global_input)
             .add_systems(Update, handle_physics)
             .add_systems(Update, screen_wrap)
-            .add_systems(Update, despawn_bullets);
+            .add_systems(Update, despawn_bullets)
+            .add_systems(Update, detect_collisions)
+            .add_observer(on_asteroid_asteroid_collision)
+            .add_observer(on_player_asteroid_collision);
     }
 }
 
-#[derive(Component)]
-struct Player;
+fn on_asteroid_asteroid_collision(_ev: On<AsteroidAsteroidCollision>) {
 
-#[derive(Component)]
-struct Bullet;
-
-#[derive(Component)]
-struct Movement {
-    speed: f32,
-    turn_speed: f32,
-    max_speed: f32,
+    // TODO: shrink each asteroid by one size, or despawn + spawn explosion if Small
 }
 
-#[derive(Component)]
-struct Physics {
-    velocity: Vec2,
-    acceleration: Vec2,
-    drag: f32,
+fn on_player_asteroid_collision(_ev: On<PlayerAsteroidCollision>) {
+    // TODO: despawn player + spawn explosion
 }
-
-#[derive(Component)]
-struct Input {
-    move_forward: KeyCode,
-    move_backward: KeyCode,
-    move_left: KeyCode,
-    move_right: KeyCode,
-    fire: KeyCode,
-}
-
-#[derive(Component)]
-struct LifeTime {
-    timer: Timer
-}
-
-
-#[derive(Resource)]
-struct GameTextures {
-    player_ship: Handle<Image>,
-    bullet: Handle<Image>,
-}
-
