@@ -1,7 +1,8 @@
 use bevy::app::{App, Update};
 use bevy::prelude::{IntoScheduleConfigs, On, Plugin};
+use crate::events::collision::{on_asteroid_asteroid_collision, on_player_asteroid_collision};
 use crate::plugins::game_schedule_plugin::GameSet;
-use crate::systems::{detect_collisions, AsteroidAsteroidCollision, PlayerAsteroidCollision};
+use crate::systems::{detect_collisions};
 
 pub struct CollisionPlugin;
 
@@ -12,14 +13,4 @@ impl Plugin for CollisionPlugin {
             .add_observer(on_asteroid_asteroid_collision)
             .add_observer(on_player_asteroid_collision);
     }
-}
-
-
-fn on_asteroid_asteroid_collision(_ev: On<AsteroidAsteroidCollision>) {
-
-    // TODO: shrink each asteroid by one size, or despawn + spawn explosion if Small
-}
-
-fn on_player_asteroid_collision(_ev: On<PlayerAsteroidCollision>) {
-    // TODO: despawn player + spawn explosion
 }

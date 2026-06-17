@@ -11,7 +11,7 @@ impl Asteroid {
     }
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub enum AsteroidSize {
     Small,
     Medium,

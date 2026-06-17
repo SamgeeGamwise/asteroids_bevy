@@ -1,5 +1,5 @@
 use crate::plugins::game_schedule_plugin::{GameSet, StartupSet};
-use crate::startup::{create_camera, create_player};
+use crate::startup::{create_player};
 use crate::systems::{despawn_bullets, handle_player_fire_bullet, handle_player_movement};
 use bevy::app::{App, Plugin, Startup, Update};
 use bevy::prelude::IntoScheduleConfigs;
@@ -10,7 +10,7 @@ impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(
             Startup,
-            (create_player, create_camera).in_set(StartupSet::Entities),
+            create_player.in_set(StartupSet::Entities),
         )
         .add_systems(
                 Update,

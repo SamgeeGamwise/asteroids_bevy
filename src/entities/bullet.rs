@@ -1,14 +1,13 @@
 use bevy::math::{Quat, Vec2};
-use bevy::prelude::{Commands, Handle, Image, Sprite, Timer, TimerMode, Transform};
+use bevy::prelude::{Commands, Handle, Image, Res, Sprite, Timer, TimerMode, Transform};
 use crate::components::{Bullet, LifeTime, Physics};
+use crate::resources::bullet_settings::BulletSettings;
 
-pub fn create_bullet(commands: &mut Commands, bullet_texture: Handle<Image>, player_transform: &Transform) {
-    let bullet_speed = 800.0;
+pub fn create_bullet(bullet: &BulletSettings, commands: &mut Commands, bullet_texture: Handle<Image>, player_transform: &Transform) {
     let direction = player_transform.up().truncate().normalize_or_zero();
-    let spawn_offset = 60.0;
 
     let spawn_position =
-        player_transform.translation + (direction * spawn_offset).extend(0.0);
+        player_transform.translation + (direction * bullet.spawn_offset).extend(0.0);
 
     let bullet_transform = Transform::from_translation(spawn_position)
         .with_rotation(
@@ -21,14 +20,12 @@ pub fn create_bullet(commands: &mut Commands, bullet_texture: Handle<Image>, pla
         bullet_transform,
         Sprite::from_image(bullet_texture),
         Physics {
-            velocity: direction * bullet_speed,
+            velocity: direction * bullet.speed,
             angular_velocity: 0.0,
             acceleration: Vec2::ZERO,
             drag: 0.0,
-            max_speed: bullet_speed,
+            max_speed: bullet.speed,
         },
-        LifeTime {
-            timer: Timer::from_seconds(1.0, TimerMode::Once),
-        }
+        LifeTime::new(bullet.lifetime_seconds)
     ));
 }

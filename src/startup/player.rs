@@ -3,8 +3,10 @@ use bevy::prelude::{Commands, KeyCode, Res, Sprite, Transform};
 use crate::components::{Input, Movement, Physics};
 use crate::resources::GameTextures;
 use crate::components::Player;
+use crate::resources::player_settings::PlayerSettings;
+use crate::resources::world_settings::WorldSettings;
 
-pub fn create_player(mut commands: Commands, textures: Res<GameTextures>) {
+pub fn create_player(player: Res<PlayerSettings>, mut commands: Commands, textures: Res<GameTextures>) {
     commands.spawn((
         Player,
         Transform::default(),
@@ -13,12 +15,12 @@ pub fn create_player(mut commands: Commands, textures: Res<GameTextures>) {
             velocity: Vec2::ZERO,
             angular_velocity: 0.0,
             acceleration: Vec2::ZERO,
-            drag: 1.0,
-            max_speed: 500.0,
+            drag: player.drag,
+            max_speed: player.max_speed,
         },
         Movement {
-            speed: 1200.0,
-            turn_speed: 2.0,
+            speed: player.thrust,
+            turn_speed: player.turn_speed,
         },
         Input {
             move_forward: KeyCode::KeyW,
