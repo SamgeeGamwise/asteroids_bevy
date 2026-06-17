@@ -9,3 +9,4 @@ pub mod screen_wrap_plugin;
 pub mod game_schedule_plugin;
 pub mod camera_plugin;
 pub mod settings_plugin;
+pub mod animation_plugin;

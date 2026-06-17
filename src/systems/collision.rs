@@ -1,7 +1,8 @@
 use bevy::prelude::*;
 use crate::components::asteroid::{Asteroid, AsteroidSize};
-use crate::components::Player;
+use crate::components::{Bullet, Player};
 use crate::resources::asteroid_settings::AsteroidSettings;
+use crate::resources::bullet_settings::BulletSettings;
 use crate::resources::player_settings::PlayerSettings;
 
 #[derive(Event)]
@@ -16,6 +17,13 @@ pub struct PlayerAsteroidCollision {
     pub asteroid: Entity,
 }
 
+#[derive(Event)]
+pub struct BulletAsteroidCollision {
+    pub bullet: Entity,
+    pub asteroid: Entity,
+}
+
+
 fn asteroid_radius(asteroid: &AsteroidSettings, size: AsteroidSize) -> f32 {
     match size {
         AsteroidSize::Large => asteroid.hitbox_radius_large,
@@ -27,11 +35,14 @@ fn asteroid_radius(asteroid: &AsteroidSettings, size: AsteroidSize) -> f32 {
 pub fn detect_collisions(
     asteroid_settings: Res<AsteroidSettings>,
     player: Res<PlayerSettings>,
+    bullet_settings: Res<BulletSettings>,
     asteroid_query: Query<(Entity, &Transform, &Asteroid)>,
     player_query: Query<(Entity, &Transform), With<Player>>,
+    bullet_query: Query<(Entity, &Transform, &Bullet)>,
     mut commands: Commands,
 ) {
     let asteroids: Vec<(Entity, &Transform, &Asteroid)> = asteroid_query.iter().collect();
+    let bullets: Vec<(Entity, &Transform, &Bullet)> = bullet_query.iter().collect();
 
     for i in 0..asteroids.len() {
         for j in (i + 1)..asteroids.len() {
@@ -40,6 +51,16 @@ pub fn detect_collisions(
             let dist = transform_a.translation.distance(transform_b.translation);
             if dist < asteroid_radius(&asteroid_settings, asteroid_a.size) + asteroid_radius(&asteroid_settings, asteroid_b.size) {
                 commands.trigger(AsteroidAsteroidCollision { entity_a, entity_b });
+            }
+        }
+
+        for j in 0..bullets.len() {
+            let (asteroid_entity, asteroid_transform, asteroid) = asteroids[i];
+            let (bullet_entity, bullet_transform, bullet) = bullets[j];
+            let dist = asteroid_transform.translation.distance(bullet_transform.translation);
+
+            if dist < bullet_settings.hitbox_radius + asteroid_radius(&asteroid_settings, asteroid.size) {
+                commands.trigger(BulletAsteroidCollision { bullet: bullet_entity, asteroid: asteroid_entity });
             }
         }
     }

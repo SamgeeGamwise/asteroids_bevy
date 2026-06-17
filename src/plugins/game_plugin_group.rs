@@ -1,4 +1,5 @@
 use bevy::app::{PluginGroup, PluginGroupBuilder};
+use crate::plugins::animation_plugin::AnimationPlugin;
 use crate::plugins::camera_plugin::CameraPlugin;
 use crate::plugins::game_schedule_plugin::GameSchedulePlugin;
 use crate::plugins::settings_plugin::SettingsPlugin;
@@ -25,5 +26,6 @@ impl PluginGroup for GamePluginGroup {
             .add(PhysicsPlugin)
             .add(GlobalInputPlugin)
             .add(ScreenWrapPlugin)
+            .add(AnimationPlugin)
     }
 }

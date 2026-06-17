@@ -1,6 +1,7 @@
 use bevy::app::{App, Plugin};
 use crate::resources::asteroid_settings::AsteroidSettings;
 use crate::resources::bullet_settings::BulletSettings;
+use crate::resources::explosion_settings::ExplosionSettings;
 use crate::resources::player_settings::PlayerSettings;
 use crate::resources::world_settings::WorldSettings;
 
@@ -25,6 +26,10 @@ impl Plugin for SettingsPlugin {
                 speed: 800.0,
                 lifetime_seconds: 1.0,
                 spawn_offset: 60.0,
+                hitbox_radius: 5.0,
+            })
+            .insert_resource(ExplosionSettings {
+                frame_per_time: 0.1
             })
             .insert_resource(AsteroidSettings {
                 spawn_timer: 8.0,

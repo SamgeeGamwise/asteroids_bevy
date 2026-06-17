@@ -5,6 +5,7 @@ pub mod physics;
 pub mod asteroid_spawner;
 pub mod collision;
 pub mod invulnerability;
+pub mod animate_sprite;
 
 pub use input::*;
 pub use physics::*;

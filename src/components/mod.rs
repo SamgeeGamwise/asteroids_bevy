@@ -6,6 +6,8 @@ pub mod input;
 pub mod lifetime;
 pub mod asteroid;
 pub mod invulnerability_timer;
+pub mod sprite_animation;
+pub mod explosion;
 
 pub use player::Player;
 pub use bullet::Bullet;

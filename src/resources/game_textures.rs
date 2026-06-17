@@ -9,5 +9,6 @@ pub struct GameTextures {
     pub small_asteroid: Handle<Image>,
     pub medium_asteroid: Handle<Image>,
     pub large_asteroid: Handle<Image>,
+    pub explosion: Vec<Handle<Image>>,
 }
 

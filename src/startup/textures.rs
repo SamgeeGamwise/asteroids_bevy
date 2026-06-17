@@ -12,6 +12,17 @@ pub fn load_textures(
         small_asteroid: asset_server.load("textures/meteor/meteorGrey_small.png"),
         medium_asteroid: asset_server.load("textures/meteor/meteorGrey_med.png"),
         large_asteroid: asset_server.load("textures/meteor/meteorGrey_big.png"),
+        explosion: vec![
+            asset_server.load("textures/explosion/001.png"),
+            asset_server.load("textures/explosion/002.png"),
+            asset_server.load("textures/explosion/003.png"),
+            asset_server.load("textures/explosion/004.png"),
+            asset_server.load("textures/explosion/005.png"),
+            asset_server.load("textures/explosion/006.png"),
+            asset_server.load("textures/explosion/007.png"),
+            asset_server.load("textures/explosion/008.png"),
+            asset_server.load("textures/explosion/009.png"),
+        ],
     });
 }
 
