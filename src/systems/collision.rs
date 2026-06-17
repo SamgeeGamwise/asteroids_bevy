@@ -56,7 +56,7 @@ pub fn detect_collisions(
 
         for j in 0..bullets.len() {
             let (asteroid_entity, asteroid_transform, asteroid) = asteroids[i];
-            let (bullet_entity, bullet_transform, bullet) = bullets[j];
+            let (bullet_entity, bullet_transform, _bullet) = bullets[j];
             let dist = asteroid_transform.translation.distance(bullet_transform.translation);
 
             if dist < bullet_settings.hitbox_radius + asteroid_radius(&asteroid_settings, asteroid.size) {

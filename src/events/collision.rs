@@ -1,7 +1,7 @@
 use bevy::prelude::{Commands, Entity, On, Query, Res, Transform};
 use bevy::sprite::Sprite;
 use crate::components::asteroid::{Asteroid, AsteroidSize};
-use crate::components::{Bullet, InvulnerabilityTimer, Player};
+use crate::components::{InvulnerabilityTimer, Player};
 use crate::components::explosion::Explosion;
 use crate::components::sprite_animation::SpriteAnimation;
 use crate::entities::asteroid::create_asteroid;
@@ -80,7 +80,7 @@ pub fn on_player_asteroid_collision(
     world_settings: Res<WorldSettings>,
     game_textures: Res<GameTextures>,
 ) {
-    let Ok((player_entity, player_transform, player)) = player_query.get(_ev.player) else {
+    let Ok((player_entity, player_transform, _player)) = player_query.get(_ev.player) else {
         return;
     };
 
@@ -111,7 +111,7 @@ pub fn on_bullet_asteroid_collision(
     world_settings: Res<WorldSettings>,
     game_textures: Res<GameTextures>,
 ) {
-    let Ok((bullet_entity)) = bullet_query.get(_ev.bullet) else {
+    let Ok(bullet_entity ) = bullet_query.get(_ev.bullet) else {
         return;
     };
 

@@ -1,7 +1,6 @@
 use bevy::asset::Handle;
 use bevy::image::Image;
-use bevy::prelude::{Component, Res, Timer, TimerMode};
-use crate::resources::GameTextures;
+use bevy::prelude::{Component, Timer, TimerMode};
 
 #[derive(Component)]
 pub struct SpriteAnimation {
