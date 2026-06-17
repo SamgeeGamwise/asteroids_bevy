@@ -2,7 +2,7 @@ use bevy::app::AppExit;
 use bevy::input::ButtonInput;
 use bevy::math::Vec2;
 use bevy::prelude::{Commands, KeyCode, MessageWriter, Query, Res, Time, Transform, With};
-use crate::components::{Bullet, Input, Movement, Physics};
+use crate::components::{Input, Movement, Physics};
 use crate::resources::GameTextures;
 use crate::components::Player;
 use crate::entities::bullet::create_bullet;

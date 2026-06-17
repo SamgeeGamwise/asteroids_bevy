@@ -1,5 +1,5 @@
 use bevy::math::{Quat, Vec2};
-use bevy::prelude::{Commands, Handle, Image, Res, Sprite, Timer, TimerMode, Transform};
+use bevy::prelude::{Commands, Handle, Image, Sprite, Transform};
 use crate::components::{Bullet, LifeTime, Physics};
 use crate::resources::bullet_settings::BulletSettings;
 

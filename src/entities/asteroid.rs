@@ -1,8 +1,7 @@
 use bevy::asset::Handle;
 use bevy::image::Image;
 use bevy::math::{Quat, Vec2, Vec3};
-use bevy::prelude::{Commands, Res, Sprite, Transform};
-use bevy::transform;
+use bevy::prelude::{Commands, Sprite, Transform};
 use crate::components::Physics;
 use rand::RngExt;
 use crate::components::asteroid::{Asteroid, AsteroidSize};
@@ -70,7 +69,7 @@ fn get_random_trajectory(asteroid: &AsteroidSettings) -> Vec2 {
     Vec2::new(velocity_x, velocity_y) * rng.random_range(0.1..=asteroid.speed)
 }
 
-fn get_random_translation(asteroid: &AsteroidSettings, size: AsteroidSize, world: &WorldSettings) -> Vec3 {
+fn get_random_translation(_asteroid: &AsteroidSettings, _size: AsteroidSize, world: &WorldSettings) -> Vec3 {
     let mut rng = rand::rng();
     let top_bottom = rng.random_bool(0.5);
     let start_or_finish = rng.random_bool(0.5);

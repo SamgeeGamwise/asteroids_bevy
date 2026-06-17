@@ -1,4 +1,4 @@
-use bevy::prelude::{Commands, Res, ResMut, Time, World};
+use bevy::prelude::{Commands, Res, ResMut, Time};
 use crate::components::asteroid::AsteroidSize;
 use crate::entities::asteroid::create_asteroid;
 use crate::resources::asteroid_settings::AsteroidSettings;

@@ -1,5 +1,5 @@
 use bevy::app::{App, Update};
-use bevy::prelude::{IntoScheduleConfigs, On, Plugin};
+use bevy::prelude::{IntoScheduleConfigs, Plugin};
 use crate::events::collision::{on_asteroid_asteroid_collision, on_player_asteroid_collision};
 use crate::plugins::game_schedule_plugin::GameSet;
 use crate::systems::{detect_collisions};

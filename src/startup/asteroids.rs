@@ -1,12 +1,8 @@
-use bevy::math::Vec2;
-use bevy::prelude::{Commands, KeyCode, Res, Sprite, Transform};
-use crate::components::{Input, Movement, Physics};
+use bevy::prelude::{Commands, Res};
 use crate::components::asteroid::AsteroidSize;
 use crate::resources::GameTextures;
-use crate::components::Player;
 use crate::entities::asteroid::create_asteroid;
 use crate::resources::asteroid_settings::AsteroidSettings;
-use crate::resources::player_settings::PlayerSettings;
 use crate::resources::world_settings::WorldSettings;
 
 pub fn create_starting_asteroid(

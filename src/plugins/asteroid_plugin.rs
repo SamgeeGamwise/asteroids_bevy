@@ -1,6 +1,5 @@
 use bevy::app::{App, Plugin, Startup, Update};
 use bevy::prelude::IntoScheduleConfigs;
-use crate::entities::asteroid::create_asteroid;
 use crate::plugins::game_schedule_plugin::{GameSet, StartupSet};
 use crate::resources::asteroid_settings::AsteroidSettings;
 use crate::resources::asteroid_spawn_timer::AsteroidSpawnTimer;

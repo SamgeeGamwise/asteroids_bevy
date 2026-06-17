@@ -4,7 +4,6 @@ use crate::components::{Input, Movement, Physics};
 use crate::resources::GameTextures;
 use crate::components::Player;
 use crate::resources::player_settings::PlayerSettings;
-use crate::resources::world_settings::WorldSettings;
 
 pub fn create_player(player: Res<PlayerSettings>, mut commands: Commands, textures: Res<GameTextures>) {
     commands.spawn((
