@@ -8,7 +8,7 @@ use crate::bullet::systems::despawn_bullets;
 use crate::schedule::{GameSet, StartupSet};
 use bevy::prelude::*;
 
-pub use components::{Input, Movement, Player};
+pub use components::Player;
 
 pub struct PlayerPlugin;
 

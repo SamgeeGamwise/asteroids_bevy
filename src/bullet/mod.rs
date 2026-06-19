@@ -1,4 +1,4 @@
 pub mod components;
 pub mod systems;
 
-pub use components::{Bullet, LifeTime};
+pub use components::Bullet;

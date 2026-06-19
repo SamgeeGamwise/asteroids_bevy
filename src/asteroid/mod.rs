@@ -7,7 +7,6 @@ use crate::schedule::{GameSet, StartupSet};
 use crate::settings::AsteroidSettings;
 use bevy::prelude::*;
 
-pub use components::{Asteroid, AsteroidSize, InvulnerabilityTimer};
 
 #[derive(Resource)]
 pub struct AsteroidSpawnTimer {

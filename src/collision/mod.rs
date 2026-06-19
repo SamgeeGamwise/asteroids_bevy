@@ -1,9 +1,7 @@
 mod events;
 mod handlers;
 
-pub use events::{
-    AsteroidAsteroidCollision, BulletAsteroidCollision, PlayerAsteroidCollision, detect_collisions,
-};
+pub use events::detect_collisions;
 
 use self::handlers::{
     on_asteroid_asteroid_collision, on_bullet_asteroid_collision, on_player_asteroid_collision,
