@@ -1,13 +1,33 @@
-pub mod startup;
-pub mod entities;
-pub mod systems;
-pub mod components;
-pub mod resources;
-pub mod plugins;
-pub mod events;
+mod assets;
+mod asteroid;
+mod bullet;
+mod collision;
+mod fx;
+mod physics;
+mod player;
+mod schedule;
+mod settings;
+mod world;
 
+use bevy::app::{PluginGroup, PluginGroupBuilder};
 use bevy::prelude::*;
-use crate::plugins::game_plugin_group::GamePluginGroup;
+
+struct GamePluginGroup;
+
+impl PluginGroup for GamePluginGroup {
+    fn build(self) -> PluginGroupBuilder {
+        PluginGroupBuilder::start::<Self>()
+            .add(schedule::GameSchedulePlugin)
+            .add(settings::SettingsPlugin)
+            .add(assets::AssetPlugin)
+            .add(player::PlayerPlugin)
+            .add(world::WorldPlugin)
+            .add(asteroid::AsteroidPlugin)
+            .add(collision::CollisionPlugin)
+            .add(physics::PhysicsPlugin)
+            .add(fx::AnimationPlugin)
+    }
+}
 
 fn main() {
     App::new()
