@@ -24,7 +24,7 @@ pub struct BulletSettings {
     pub hitbox_radius: f32,
 }
 
-#[derive(Resource)]
+#[derive(Resource, Debug, Clone, Copy)]
 pub struct AsteroidSettings {
     pub spawn_timer: f32,
     pub invulnerability_timer: f32,
@@ -32,9 +32,14 @@ pub struct AsteroidSettings {
     pub speed: f32,
     pub max_speed: f32,
     pub angular_speed: f32,
-    pub hitbox_radius_large: f32,
-    pub hitbox_radius_medium: f32,
-    pub hitbox_radius_small: f32,
+    pub hitbox_radius: HitboxRadius
+}
+
+#[derive(Debug, Clone, Copy)]
+pub struct HitboxRadius {
+    pub large: f32,
+    pub medium: f32,
+    pub small: f32,
 }
 
 #[derive(Resource)]
@@ -74,9 +79,11 @@ impl Plugin for SettingsPlugin {
             speed: 500.0,
             max_speed: 500.0,
             angular_speed: 1.0,
-            hitbox_radius_large: 75.0,
-            hitbox_radius_medium: 35.0,
-            hitbox_radius_small: 20.0,
+            hitbox_radius: HitboxRadius {
+                large: 75.0,
+                medium: 35.0,
+                small: 20.0,
+            },
         });
     }
 }

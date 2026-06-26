@@ -24,9 +24,9 @@ pub struct BulletAsteroidCollision {
 
 fn asteroid_radius(settings: &AsteroidSettings, size: AsteroidSize) -> f32 {
     match size {
-        AsteroidSize::Large => settings.hitbox_radius_large,
-        AsteroidSize::Medium => settings.hitbox_radius_medium,
-        AsteroidSize::Small => settings.hitbox_radius_small,
+        AsteroidSize::Large => settings.hitbox_radius.large,
+        AsteroidSize::Medium => settings.hitbox_radius.medium,
+        AsteroidSize::Small => settings.hitbox_radius.small,
     }
 }
 
